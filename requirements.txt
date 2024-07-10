@@ -1,0 +1,2 @@
+python-sat==1.8.dev13
+six==1.16.0

@@ -72,10 +72,10 @@ For swapping combinations of up to $ r $  elements between $ P_0 $  and $ R_0 $ 
 - **Ensuring $ Z_{i+1} $  is kept in $ P_{i+1} $**:
    If $ Z_{i+1} = (P_i \setminus P_{i+1}) \cup (P_{i+1} \setminus P_i) $ :
    $$ \bigwedge_{z \in Z_{i+1}} z_{P_{i+1}} $$
-   This ensures that elements in $ Z_{i+1} $  are in $ P_{i+1} $ .
+   This ensures that elements in $ Z_{i+1} $  are in $ P_{i+1} $ : $ Z_{i+1} \subseteq P_{i+1} $.
 
 - **Ensuring the size constraint**:
-   This requires counting the number of true variables in $ P_{i+1} $  and ensuring it does    not equal the number of true variables in $ P_i $ . 
+   This requires counting the number of true variables in $ P_{i+1} $  and ensuring it does    not equal the number of true variables in $ P_i $ : $ \mid P_{i+1} \mid = \mid P_i \mid $
 
 - **Ensuring Disjoint sets $ A_1, A_2, ..., A_i $**
-    Finally, check that the sets $ A_1, A_2, ... $ are disjoint be adding clauses that enforce disjointness. 
+    Finally, check that the sets $ A_1, A_2, ... $ are disjoint be adding clauses that enforce disjointness: $ \forall i, \forall j \neq i, \quad A_i \cap A_j = \emptyset $.

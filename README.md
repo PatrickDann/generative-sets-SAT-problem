@@ -15,8 +15,8 @@ Given the initial conditions:
 3. **Swap** all combinations of up to $ r $  elements from $ R_0 $  to $ P_0 $ .
 
 We Perform operations (add, remove, swap) to generate new sets $ A_{i+1} $ from $ P_i $. Then
-we select an optimal set $ P_{i+1} $ from $ A_{I+1} $ and define $ Z_{i+1} $ as the symmetric difference between $ P_i $ and $ P_{i+1} $.
-To ensure disjointness between each iteration of $ A_i's $ we maintain the path $ Z_{i} $ and do not revert to the same size as $ P_i $ for each iteration. 
+we select an optimal set $ P_{i+1} $ from $ A_{i+1} $ and define $ Z_{i+1} $ as the symmetric difference between $ P_i $ and $ P_{i+1} $.
+To ensure disjointness between each iteration of $ A_i $ we maintain the path $ Z_{i} $ and do not revert to the same size as $ P_i $ for each iteration. 
 
 ## SAT Encoding
 

@@ -76,9 +76,7 @@ For swapping combinations of up to $ r $  elements between $ P_0 $  and $ R_0 $ 
 
 ### Clauses for Ensuring the Conditions
 - **Ensuring $ Z_{i+1} $  is kept in $ P_{i+1} $**:
-   If $ Z_{i+1} = (P_i \setminus P_{i+1}) \cup (P_{i+1} \setminus P_i) $ :
-   $$ \bigwedge_{z \in Z_{i+1}} z_{P_{i+1}} $$
-   This ensures that elements in $ Z_{i+1} $  are in $ P_{i+1} $ : $ \quad Z_{i+1} \subseteq P_{i+1} $.
+   If  $ Z_{i+1} \subseteq P_{i+1} $.
 
 - **Ensuring the size constraint**:
    This requires counting the number of true variables in $ P_{i+1} $  and ensuring it does not equal the number of true variables in $ P_{i-1} $ : $ \quad \mid P_{i+1}\mid = \mid P_{i-1} \mid $

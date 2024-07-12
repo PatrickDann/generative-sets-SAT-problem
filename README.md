@@ -12,7 +12,7 @@ This repository contains a solution for encoding and solving a SAT problem using
 
 Given the initial conditions:
 - $ P_0 $ : A set of numbers.
-- $ R_0 $ : A complement set of numbers, i.e $R_0 = U \ P_0 $
+- $ R_0 $ : A complement set of numbers, i.e $ R_0 = U \ P_0 $
 - $ P_0 \cup R_0 = U $ and $ P_0 \cap R_0 = \emptyset $.
 
 ### Operations:

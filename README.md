@@ -83,5 +83,14 @@ For swapping combinations of up to $ r $  elements between $ P_0 $  and $ R_0 $ 
 - **Ensuring the size constraint**:
    This requires counting the number of true variables in $ P_{i+1} $  and ensuring it does not equal the number of true variables in $ P_{i-1} $ : $ \quad \mid P_{i+1}\mid = \mid P_{i-1} \mid $
 
-- **Ensuring Disjoint sets $ A_1, A_2, ..., A_i $**
-    Finally, check that the sets $ A_1, A_2, ... $ are disjoint be adding clauses that enforce disjointness: $ \quad \forall i, \forall j \neq i, \quad A_i \cap A_j = \emptyset $.
+- **Ensuring Disjoint Sets \( A_1, A_2, \ldots, A_i \)**
+
+- Finally, we check that the sets \( A_1, A_2, \ldots, A_i \) are not disjoint by adding clauses that check for intersections: \( \forall i, \forall j \neq i, \quad A_i \cap A_j \neq \emptyset \).
+
+- Checking for Non-Disjoint Sets:
+    By adding the clauses $ \forall i, \forall j \neq i, \quad A_i \cap A_j \neq \emptyset $, we look for any intersections between different sets $ A_i $ and $ A_j $. If an intersection exists, it means the sets are not disjoint.
+
+- Counter-Example Proves Disjointness:
+    If after checking all pairs of sets $ (A_i, A_j) $, we find any pair where $ A_i \cap A_j \neq \emptyset $, this acts as a counter-example to the possibility of non-disjointness. In other words, the absence of intersections in all pairs proves that there are no non-disjoint sets.
+
+- Thus, if no pair of sets $ (A_i, A_j) $ is found to have a non-empty intersection, it conclusively demonstrates that all sets are disjoint given the other clauses are true.

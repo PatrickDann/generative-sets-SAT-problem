@@ -21,7 +21,7 @@ def encode_sat_problem(U, P0, R0, r):
         """
         for size in range(1, r + 1):
             for combination in itertools.combinations(range(n), size):
-                clause = [A[i] for i in combination if P_prev[i] in R_prev]
+                clause = [A[i] for i in combination if i in R_prev]
                 if clause:
                     solver.add_clause(clause)
 
@@ -32,7 +32,7 @@ def encode_sat_problem(U, P0, R0, r):
         """
         for size in range(1, r + 1):
             for combination in itertools.combinations(range(n), size):
-                clause = [-A[i] for i in combination if P_prev[i] in P_prev]
+                clause = [-A[i] for i in combination if i in P_prev]
                 if clause:
                     solver.add_clause(clause)
 
@@ -45,18 +45,16 @@ def encode_sat_problem(U, P0, R0, r):
             for combination_r in itertools.combinations(range(n), size):
                 for combination_p in itertools.combinations(range(n), size):
                     for i, j in zip(combination_r, combination_p):
-                        if R_prev[i] in R_prev and P_prev[j] in P_prev:
+                        if i in R_prev and j in P_prev:
                             solver.add_clause([-R_prev[i], -P_prev[j], A[i], -A[j]])
 
     def ensure_non_disjoint_sets(solver, A1, A2):
         """
         Ensure that there is at least one common element between A1 and A2.
         """
-        clause = []
         for i in range(n):
-            clause.append(A1[i])
-            clause.append(A2[i])
-        solver.add_clause(clause)
+            solver.add_clause([A1[i], A2[i]])
+
 
     def ensure_path(solver, Z, P_next):
         """
@@ -84,14 +82,14 @@ def encode_sat_problem(U, P0, R0, r):
         for size in range(1, r + 1):
             # Generate states by adding elements from R_prev to P_prev
             for combination in itertools.combinations(range(n), size):
-                if all(P_prev[i] in R_prev for i in combination):
+                if all(i in R_prev for i in combination):
                     new_P = P_prev + list(combination)
                     new_R = [x for x in R_prev if x not in combination]
                     next_states.append((new_P, new_R))
                 
             # Generate states by removing elements from P_prev to R_prev
             for combination in itertools.combinations(range(n), size):
-                if all(P_prev[i] in P_prev for i in combination):
+                if all(i in P_prev for i in combination):
                     new_P = [x for x in P_prev if x not in combination]
                     new_R = R_prev + list(combination)
                     next_states.append((new_P, new_R))
@@ -99,7 +97,7 @@ def encode_sat_problem(U, P0, R0, r):
             # Generate states by swapping elements between P_prev and R_prev
             for combination_r in itertools.combinations(range(n), size):
                 for combination_p in itertools.combinations(range(n), size):
-                    if all(R_prev[i] in R_prev for i in combination_r) and all(P_prev[j] in P_prev for j in combination_p):
+                    if all(i in R_prev for i in combination_r) and all(j in P_prev for j in combination_p):
                         new_P = [x for x in P_prev if x not in combination_p] + list(combination_r)
                         new_R = [x for x in R_prev if x not in combination_r] + list(combination_p)
                         next_states.append((new_P, new_R))
